@@ -46,3 +46,25 @@ body {
   float: left;
   color: #999;
 }
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav span {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.below {
+   position: fixed;
+   left: 0;
+   bottom: 20%;
+   width: 100%;
+   text-align: center;
+}

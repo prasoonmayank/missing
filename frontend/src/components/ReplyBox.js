@@ -1,14 +1,13 @@
 import React from 'react'
 
-class ReplyBox extends Component {
+class ReplyBox extends React.Component {
   state = {};
   render () {
-    const {message} = this.props;
     return (
-        <div class="container">
-          <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;" />
+        <div className="container">
+          <img src="https://dummyimage.com/600x400/000/fff" alt="Avatar" />
           <p>Hello. How are you today?</p>
-          <span class="time-right">11:00</span>
+          <span className="time-right">11:00</span>
         </div>
         )
   }

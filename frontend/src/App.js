@@ -1,13 +1,18 @@
 import React from 'react'
 import InputBox from './components/inputBox'
-import ReceiveBox from './components/ReceiveBox'
-import ReplyBox from './components/ReplyBox'
+import ChatSpace from './components/chatSpace'
 
 class App extends React.Component {
   state = {};
   render () {
     return (
-        <div></div>
+        <React.Fragment>
+          <div class="topnav">
+            <span class="active" href="#home">Missing list</span>
+          </div>
+          <ChatSpace />
+          <InputBox />
+        </React.Fragment>
       )
   }
 }
