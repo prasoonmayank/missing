@@ -1,6 +1,8 @@
 import cv2
 from skimage.measure import compare_ssim
 from mpeople.models import MissingPerson
+import pytesseract
+from PIL import Image
 
 def compare_image(img_link):
     img = cv2.imread(img_link)
@@ -16,3 +18,6 @@ def compare_image(img_link):
 
 def extract_text_from_img(img_link):
     img = cv2.imread(img_link)
+    image = Image.open(img_link)
+    img_text = pytesseract.image_to_string(image, lang='en')
+    return img_text
