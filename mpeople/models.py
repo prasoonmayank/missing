@@ -13,3 +13,4 @@ class MissingPerson(models.Model):
     person_img = models.ImageField(upload_to='images/')
     image_description = models.TextField()
     to_contact = models.ManyToManyField(User)
+    created_on = models.DateTimeField(auto_now_add=True)
