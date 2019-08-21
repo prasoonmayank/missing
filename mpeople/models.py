@@ -10,6 +10,6 @@ class MissingPerson(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     age = models.IntegerField()
-    person_img = models.ImageField()
+    person_img = models.ImageField(upload_to='images/')
     image_description = models.TextField()
     to_contact = models.ManyToManyField(User)
