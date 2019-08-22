@@ -10,7 +10,7 @@ class App extends React.Component {
     text: ''
   };
   sendRequest = (text) => {
-    post_data = {
+    const post_data = {
       choice_type: this.state.choice_type,
       text: this.state.text
     }
