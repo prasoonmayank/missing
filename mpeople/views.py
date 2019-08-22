@@ -37,10 +37,15 @@ from django.conf import settings
 class TextViewSet(APIView):
 
     def post(self, request, *args, **kwargs):
+        print(request.data)
         text = request.data["text"]
         choice_type = request.data["choice_type"]
         return_json = {}
-        if choice_type == 0:
+        if choice_type == 100:
+            return_json["choice_type"] = 0
+            return_json["type"] = "list-button"
+            return_json["return_text_list"] = ["Check missing people in the city","Check missing people in state", "Search a person from image", "Search a person name"]
+        elif choice_type == 0:
             if text == "Check missing people in the city":
                 return_json["choice_type"] = 1
                 return_json["return_text_list"] = ["Show top 100 people", "Top 100 people images"]
@@ -154,4 +159,4 @@ class TextViewSet(APIView):
         else:
             return_json["choice_type"] = 0
             return_json["return_text_list"] = ["Wrong input please enter again"]
-        return return_json
+        return Response(return_json)
