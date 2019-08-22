@@ -151,4 +151,7 @@ class TextViewSet(APIView):
             return_json["return_text_list"] = ["Enter contact person email"]
             return_json["entry_type"] = "text"
             # At this point API call is made to add the missing person in the directory
+        else:
+            return_json["choice_type"] = 0
+            return_json["return_text_list"] = ["Wrong input please enter again"]
         return return_json
