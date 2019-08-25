@@ -12,19 +12,21 @@ class ChatSpace extends React.Component {
   };
   addChatMsg = () => {
     const {replyTextList, receiveTextList} = this.props
+    console.log(replyTextList)
+    console.log(receiveTextList)
     return receiveTextList.map((text, index) => {
       return (
         <React.Fragment>
+          {index>0 ? (
+              <ReplyBox
+                text={replyTextList[index-1]}
+              />
+            ) : null}
           <ReceiveBox
             textList={text.text_list}
             sendRequest={this.sendRequest}
             type={text.type}
           />
-          {index>0 ? (
-              <ReplyBox
-                text={replyTextList[index]}
-              />
-            ) : null}
         </React.Fragment>
         )
     })
@@ -33,7 +35,6 @@ class ChatSpace extends React.Component {
     this.props.sendRequest(text)
   }
   render () {
-    const {receiveText, replyText} = this.state
     return (
         <React.Fragment>
           {this.addChatMsg()}

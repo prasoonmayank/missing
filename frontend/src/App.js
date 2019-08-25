@@ -5,7 +5,8 @@ import ChatSpace from './components/chatSpace'
 
 class App extends React.Component {
   state = {
-    activated: false,
+    textDeactivated: true,
+    fileDeactivated: true,
     choice_type: 100,
     replyTextList: [],
     textList: [],
@@ -29,10 +30,12 @@ class App extends React.Component {
     }
     axios.post('http://localhost:8000/api/msg/', post_data)
       .then(res => {
+        if (res.data.entry_type === "text") {
+          this.setState({textDeactivated: false})
+        }
         this.setState(prevState => {
           const newState = prevState
-          const n = {'text_list': res.data.return_text_list,
-                     'type': res.data.type}
+          const n = {'text_list': res.data.return_text_list}
           newState["receiveTextList"].push(n)
           newState["choice_type"] = res.data.choice_type
           return newState
@@ -46,7 +49,7 @@ class App extends React.Component {
     this.setState({text: text})
   }
   render () {
-    const {activated,text,choice_type,textList,receiveTextList,replyTextList} = this.state;
+    const {fileDeactivated, textDeactivated, text, choice_type, textList, receiveTextList, replyTextList} = this.state;
     return (
         <React.Fragment>
           <div className="topnav">
@@ -60,7 +63,8 @@ class App extends React.Component {
             receiveTextList={receiveTextList}
            />
           <InputBox
-            activated={activated}
+            textDeactivated={textDeactivated}
+            fileDeactivated={fileDeactivated}
             setText={this.setText}
             sendRequest={this.sendRequest}
           />

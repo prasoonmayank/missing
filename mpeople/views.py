@@ -63,27 +63,43 @@ class TextViewSet(APIView):
                 return_json["return_text_list"] = ["Enter person name"]
                 return_json["entry_type"] = "text"
         elif choice_type == 1:
-            persons = MissingPerson.objects.filter(city=text)
-            return_json["persons"] = [person.id for person in persons]
+            # persons = MissingPerson.objects.filter(city=text)
+            # return_json["persons"] = [person.id for person in persons]
             if text == "Show top 100 people":
                 return_json["choice_type"] = 5
-                return_json["final_output"] = [person.name for person in persons]
-                return_json["entry_type"] = "No more inputs"
+                return_json["return_text_list"] = ["Enter city name"]
+                return_json["entry_type"] = "text"
             elif text == "Top 100 people images":
                 return_json["choice_type"] = 6
+                return_json["return_text_list"] = ["Enter city name"]
                 # Final output is top 100 images
-                return_json["entry_type"] = "No more inputs"
+                return_json["entry_type"] = "text"
+        elif choice_type == 5:
+            persons = MissingPerson.objects.filter(city=text)
+            return_json["return_text_list"] = [person.name for person in persons]
+            return_json["entry_type"] = "No more inputs"
+        elif choice_type == 6:
+            # show 100 images
+            pass
         elif choice_type == 2:
-            persons = MissingPerson.objects.filter(state=text)
-            return_json["persons"] = [person.id for person in persons]
+            # persons = MissingPerson.objects.filter(state=text)
+            # return_json["persons"] = [person.id for person in persons]
             if text == "Show top 100 people":
                 return_json["choice_type"] = 7
-                return_json["final_output"] = [person.name for person in persons]
-                return_json["entry_type"] = "No more inputs"
+                return_json["return_text_list"] = ["Enter state name"]
+                return_json["entry_type"] = "text"
             elif text == "Top 100 people images":
                 return_json["choice_type"] = 8
                 # Final output is top 100 images
-                return_json["entry_type"] = "No more inputs"
+                return_json["return_text_list"] = ["Enter state name"]
+                return_json["entry_type"] = "text"
+        elif choice_type == 7:
+            persons = MissingPerson.objects.filter(state=text)
+            return_json["return_text_list"] = [person.name for person in persons]
+            return_json["entry_type"] = "No more inputs"
+        elif choice_type == 8:
+            # Show top 100 images
+            pass
         elif choice_type == 3:
             # Request data image
             img = request.data["img"]

@@ -4,6 +4,7 @@ class ReplyBox extends React.Component {
   state = {};
   render () {
     const {text} = this.props
+    console.log(text)
     return (
         <div className="container">
           <img src="https://dummyimage.com/600x400/000/fff" alt="Avatar" />
